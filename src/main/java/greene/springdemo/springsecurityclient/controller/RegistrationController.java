@@ -1,5 +1,7 @@
 package greene.springdemo.springsecurityclient.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +12,7 @@ import greene.springdemo.springsecurityclient.entity.User;
 import greene.springdemo.springsecurityclient.event.RegistrationCompleteEvent;
 import greene.springdemo.springsecurityclient.model.UserModel;
 import greene.springdemo.springsecurityclient.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
+
 
 @RestController
 public class RegistrationController {
