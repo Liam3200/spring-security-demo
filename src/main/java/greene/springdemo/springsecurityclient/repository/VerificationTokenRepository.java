@@ -7,5 +7,7 @@ import greene.springdemo.springsecurityclient.entity.VerificationToken;
 
 @Repository
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Long>{
+
+    VerificationToken findByToken(String token);
     
 }

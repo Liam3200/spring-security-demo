@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import greene.springdemo.springsecurityclient.entity.User;
@@ -29,6 +31,16 @@ public class RegistrationController {
                 user,
                 applicationURL(request)));
         return "Success!";
+    }
+
+    @GetMapping("/verifyRegistration")
+    public String verifyRegistration(@RequestParam("token") String token) {
+        String result = userService.validateVerificationToken(token);
+        if (result.equalsIgnoreCase("valid")) {
+            return "User verified successfully!";
+        } else {
+            return "Bad user";
+        }
     }
 
     private String applicationURL(HttpServletRequest request) {

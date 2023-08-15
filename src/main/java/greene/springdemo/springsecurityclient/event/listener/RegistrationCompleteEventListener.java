@@ -4,12 +4,14 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 
 import greene.springdemo.springsecurityclient.entity.User;
 import greene.springdemo.springsecurityclient.event.RegistrationCompleteEvent;
 import greene.springdemo.springsecurityclient.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
+@Component
 @Slf4j
 public class RegistrationCompleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
 
@@ -24,7 +26,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         String token = UUID.randomUUID().toString(); 
         userService.saveVerificationToken(user, token); 
         
-        String confirmationUrl = event.getAppUrl() + "verfiyRegistration?token=" + token;
+        String confirmationUrl = event.getAppUrl() + "/verfiyRegistration?token=" + token;
 
         //sendVerificationEmail(user.getEmail(), confirmationUrl);
         log.info("click the link to confirm your registration: " + confirmationUrl);
